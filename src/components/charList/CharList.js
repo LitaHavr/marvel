@@ -1,7 +1,7 @@
 import {useState, useEffect, useRef} from 'react';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 import './charList.scss';
 import PropTypes from "prop-types";
 import CharInfo from "../charInfo/CharInfo";
@@ -9,30 +9,23 @@ import CharInfo from "../charInfo/CharInfo";
 const CharList = (props) => {
 
     const [charList, setCharList] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
     const [newItemLoading, setNewItemLoading] = useState(false);
     const [offset, setOffset] = useState(210);
     const [charEnded, setCharEnded] = useState(false);
 
-    const marvelService = new MarvelService();
+    const {loading,error,getAllCharacters} = useMarvelService();
 
     useEffect(() => {
-        onRequest();
+        onRequest(offset,true);
     }, [])
 
 
-    const onRequest = (offset) => {
-        onCharListLoading();
-        marvelService.getAllCharacters(offset)
+    const onRequest = (offset,initial) => {
+        initial ? setNewItemLoading(false) : setNewItemLoading(true)
+        getAllCharacters(offset)
             .then(onCharListLoaded)   //в промисах если просто указанна ссылка на  функцию то аргумент который
             // приходит автоматически подставляется в функцию пример : this.onCharListLoaded(charList)
-            .catch(onError)
-    }
 
-
-    const onCharListLoading = () => {
-        setNewItemLoading(true);
     }
 
     const onCharListLoaded = (newCharList) => {
@@ -42,18 +35,12 @@ const CharList = (props) => {
         }
 
         setCharList(charList => [...charList, ...newCharList]);
-        setLoading(loading => false); // loading => /это аргумент пред стейта
         setNewItemLoading(newItemLoading => false);
         setOffset(offset => offset + 9); //передаем offset => только потому что мы отталкиваемся от пред состояния в предыдущих состояних выше этого можно было не делать
         setCharEnded(charEnded => ended)
 
     }
 
-    const onError = () => {
-
-        setError(false)
-        setLoading(loading => false);
-    }
 
     const itemRefs = useRef([]);
 
@@ -106,14 +93,14 @@ const CharList = (props) => {
     const items = renderItems(charList);
 
     const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading ? <Spinner/> : null;
-    const content = !(loading || error) ? items : null;
+    const spinner = loading && !newItemLoading ? <Spinner/> : null;
+
 
     return (
         <div className="char__list">
             {errorMessage}
             {spinner}
-            {content}
+            {items}
             <button
                 disabled={newItemLoading}
                 onClick={() => onRequest(offset)}
