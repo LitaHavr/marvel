@@ -27,7 +27,7 @@ import {useHttp} from "../hooks/http.hook";
           return res.data.results.map(_transformComics);
       }
 
-      const getComics = async (id) => {
+      const getComic = async (id) => {
           const res = await request(`${_apiBase}comics/${id}?${_apiKey}`);
           return _transformComics(res.data.results[0]);
       }
@@ -59,7 +59,7 @@ import {useHttp} from "../hooks/http.hook";
           }
       }
 
-      return {loading, error, clearError, getAllCharacters, getCharacter, getAllComics, getComics}
+      return {loading, error, clearError, getAllCharacters, getCharacter, getAllComics, getComic}
 }
 
 export default useMarvelService;
