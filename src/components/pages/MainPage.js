@@ -22,7 +22,7 @@ const MainPage = () => {
             <ErrorBoundary>
                 <RandomChar/>
             </ErrorBoundary>
-            <div className="char__content">
+            <div className="char__content bg-decoration" style={{backgroundImage: `url('${decoration}')`}}>
                 <ErrorBoundary>
                     <CharList onCharSelected={onCharSelected}/>
                 </ErrorBoundary>
@@ -35,7 +35,6 @@ const MainPage = () => {
                     </ErrorBoundary>
                 </div>
             </div>
-            <img className="bg-decoration" src={decoration} alt="vision"/>
         </>
     )
 }
