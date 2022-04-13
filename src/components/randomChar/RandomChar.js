@@ -48,7 +48,7 @@ const RandomChar = () => {
                     Or choose another one
                 </p>
                 <button onClick={updateChar} className="button button__main">
-                    <div className="inner">try it</div>
+                    try it
                 </button>
                 <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
             </div>
@@ -73,10 +73,10 @@ const View = ({char}) => {
                 </p>
                 <div className="randomchar__btns">
                     <a href={homepage} className="button button__main">
-                        <div className="inner">homepage</div>
+                        homepage
                     </a>
                     <a href={wiki} className="button button__secondary">
-                        <div className="inner">Wiki</div>
+                        Wiki
                     </a>
                 </div>
             </div>

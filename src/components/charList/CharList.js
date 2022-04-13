@@ -107,7 +107,7 @@ const CharList = (props) => {
                 style={{'display': charEnded ? 'none' : 'block'}}
                 className="button button__main button__long"
             >
-                <div className="inner">load more</div>
+                load more
             </button>
         </div>
     )
