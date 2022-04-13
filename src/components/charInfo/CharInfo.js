@@ -63,10 +63,10 @@ const View = ({char}) => {
                     <div className="char__info-name">{name}</div>
                     <div className="char__btns">
                         <a href={homepage} className="button button__main">
-                            <div className="inner">homepage</div>
+                            homepage
                         </a>
                         <a href={wiki} className="button button__secondary">
-                            <div className="inner">Wiki</div>
+                            Wiki
                         </a>
                     </div>
                 </div>

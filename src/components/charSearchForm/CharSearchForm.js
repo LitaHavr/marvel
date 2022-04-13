@@ -28,7 +28,7 @@ const CharSearchForm = () => {
         <div className="char__search-wrapper">
             <div className="char__search-success">There is! Visit {char[0].name} page?</div>
             <Link to={`/characters/${char[0].id}`} className="button button__secondary">
-                <div className="inner">To page</div>
+                To page
             </Link>
         </div> :
         <div className="char__search-error">
@@ -60,7 +60,7 @@ const CharSearchForm = () => {
                             type='submit'
                             className="button button__main"
                             disabled={loading}>
-                            <div className="inner">find</div>
+                            find
                         </button>
                     </div>
                     <FormikErrorMessage component="div" className="char__search-error" name="charName" />

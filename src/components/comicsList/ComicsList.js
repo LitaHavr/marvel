@@ -76,7 +76,7 @@ const ComicsList = () => {
                 style={{'display' : comicsEnded ? 'none' : 'block'}}
                 className="button button__main button__long"
                 onClick={() => onRequest(offset)}>
-                <div className="inner">load more</div>
+                load more
             </button>
         </div>
     )

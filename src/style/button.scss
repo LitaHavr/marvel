@@ -6,44 +6,49 @@
     text-align: center;
     text-transform: uppercase;
     font-size: 14px;
+    line-height: 18px;
     transition: 0.3s transform;
     border: none;
     background-color: transparent;
+    background: transparent;
+    padding: 10px 18px;
+    position: relative;
+    z-index: 1;
     cursor: pointer;
     &__long {
         display: block;
         width: 170px;
         margin: 45px auto 0 auto;
     }
-    .inner {
-        position: relative;
-        background-color: $main-color;
-        line-height: 18px;
-        padding: 0 18px;
-        transition: none;
-        &::before {
-            border-color: $main-color transparent;
-            border-style: solid;
-            border-width: 0 0 10px 10px;
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            top: -10px;
-            transition: none;
-        }
-        &::after {
-            border-color: $main-color transparent;
-            border-style: solid;
-            border-width: 0 0 10px 10px;
-            content: "";
-            display: block;
-            position: absolute;
-            right: 0;
-            bottom: -10px;
-            transform: rotate(180deg);
-            transition: none;
-        }
+    &::before, &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+    &::before {
+        background: linear-gradient(135deg,
+            transparent 0%,
+            transparent 7px,
+            $main-color 7px,
+            $main-color 51%,
+            transparent 51%,
+            transparent 100%
+        );
+    }
+    &::after {
+        background: linear-gradient(-45deg,
+            transparent 0%,
+            transparent 7px,
+            $main-color 7px,
+            $main-color 51%,
+            transparent 51%,
+            transparent 100%
+        );
     }
     &__main, &__secondary {
         &:hover {
@@ -51,39 +56,26 @@
         }
     }
     &__secondary {
-        .inner {
-            background-color: $grey;
-            &::before {
-                border-color: $grey transparent;
-                transition: none;
-            }
-            &::after {
-                border-color: $grey transparent; 
-                transition: none;
-            }
+        &::before {
+            background: linear-gradient(135deg,
+                transparent 0%,
+                transparent 7px,
+                $grey 7px,
+                $grey 51%,
+                transparent 51%,
+                transparent 100%
+            );
         }
-    }
-    &::before {
-        content: '';
-        display: block;
-        height: 10px;
-        margin-left: 10px;
-        transition: none;
-
-    }
-    &::after {
-        content: '';
-        display: block;
-        height: 10px;
-        margin-right: 10px;
-        transition: none;
-
-    }
-    &.button__main::before, &.button__main::after {
-        background-color: $main-color;
-    }
-    &.button__secondary::before, &.button__secondary::after {
-        background-color: $grey;
+        &::after {
+            background: linear-gradient(-45deg,
+                transparent 0%,
+                transparent 7px,
+                $grey 7px,
+                $grey 51%,
+                transparent 51%,
+                transparent 100%
+            );
+        }
     }
     &:hover {
         transform: translateY(-5px);
